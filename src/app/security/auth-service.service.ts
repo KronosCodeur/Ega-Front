@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import {Injectable, signal} from '@angular/core';
+import {ClientInterface} from "./client-interface";
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthServiceService {
+export class AuthService {
 
-  constructor() { }
+  currentClientSig = signal<ClientInterface | undefined | null>(undefined);
 }
