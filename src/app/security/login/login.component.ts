@@ -25,13 +25,13 @@ export class LoginComponent {
     email: ['', Validators.required],
     password: ['', Validators.required]
   })
-  private apiUrl = 'http://localhost:8080/ega/api/v1/auth/authenticate';
+  private apiUrl = 'https://ega-api.onrender.com/ega/api/v1/auth/authenticate';
 
   onSubmit(): void {
     this.http.post<ClientInterface>(this.apiUrl, this.form.getRawValue(),).subscribe(
       (response) => {
-        console.log(response);
-        console.log('Helloo', response.token);
+        localStorage.setItem('userId', response.id.toString());
+        localStorage.setItem('token', response.token);
         this.authService.currentClientSig.set(response);
         this.router.navigateByUrl('/dashboard').then();
       }

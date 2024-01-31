@@ -1,5 +1,5 @@
 <header class="antialiased">
-  <nav class="bg-gray-800 border-gray-200 px-4 lg:px-6 py-2.5 ">
+  <nav class="bg-gray-900 border-gray-200 px-4 lg:px-6 py-2.5 ">
     <div class="flex flex-wrap justify-between items-center">
       <div class="flex justify-start items-center space-x-3">
         <svg class="w-16 h-16 text-red-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
@@ -9,24 +9,25 @@
             stroke-linecap="round"
             stroke-linejoin="round"/>
         </svg>
-        <a class="text-red-600 text-3xl font-bold " routerLink="/dashboard">
+        <a class="text-red-600 text-3xl font-medium " routerLink="/dashboard">
           Ega
         </a>
       </div>
       <div class="flex justify-center items-center space-x-3">
-
-        <a class="text-white text-sm font-bold " routerLink="/dashboard">
+        <a class="text-white text-sm font-medium " routerLink="/dashboard">
           Home
         </a>
-        <a class="text-white text-sm font-bold " routerLink="/dashboard/account">
+        <a class="text-white text-sm font-medium " routerLink="/dashboard/account">
           Accounts
         </a>
-        <a class="text-white text-sm font-bold " routerLink="/dashboard">
+        <a class="text-white text-sm font-medium " routerLink="/dashboard/transaction">
           Transactions
         </a>
       </div>
       <div class="flex items-center lg:order-2 space-x-3">
-        <button class="bg-red-600 px-2 py-2 rounded-xl text-white shadow text-sm font-medium">Logout</button>
+        <button (click)="logout()" class="bg-red-600 px-2 py-2 rounded-xl text-white shadow text-sm font-medium">
+          Logout
+        </button>
       </div>
     </div>
   </nav>
