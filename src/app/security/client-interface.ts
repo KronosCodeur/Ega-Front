@@ -9,4 +9,5 @@ export interface ClientInterface {
   token: string;
   birthday: string;
   address: string;
+  id: number
 }
