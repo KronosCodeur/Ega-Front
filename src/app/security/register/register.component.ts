@@ -30,7 +30,7 @@ export class RegisterComponent {
   })
 
 
-  private apiUrl = 'https://ega-api.onrender.com/ega/api/v1/auth/register';
+  private apiUrl = 'http://localhost:8080/ega/api/v1/auth/register';
 
   register(): void {
     this.http.post<{ message: string }>(this.apiUrl, this.form.getRawValue(),).subscribe(
