@@ -30,8 +30,8 @@ export class LoginComponent {
   onSubmit(): void {
     this.http.post<ClientInterface>(this.apiUrl, this.form.getRawValue(),).subscribe(
       (response) => {
-        console.log(response);
-        console.log('Helloo', response.token);
+        localStorage.setItem('userId', response.id.toString());
+        localStorage.setItem('token', response.token);
         this.authService.currentClientSig.set(response);
         this.router.navigateByUrl('/dashboard').then();
       }
