@@ -22,7 +22,7 @@ export class AccountComponent implements OnInit {
   }
 
   fetchData() {
-    this.http.get<Account[]>('http://localhost:8080/ega/api/v1/accounts').subscribe(
+    this.http.get<Account[]>('https://ega-api.onrender.com/ega/api/v1/accounts').subscribe(
       (response) => {
         this.accounts = response;
         console.log(this.accounts);
