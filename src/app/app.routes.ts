@@ -6,6 +6,7 @@ import {AccountInfosComponent} from "./dashboard/pages/account-infos/account-inf
 import {AccountComponent} from "./dashboard/pages/account/account.component";
 import {TransactionsComponent} from "./dashboard/pages/transactions/transactions.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
+import {AccountCreationComponent} from "./dashboard/pages/account-creation/account-creation.component";
 
 export const routes: Routes = [
   {
@@ -34,6 +35,10 @@ export const routes: Routes = [
           {
             path: 'info',
             component: AccountInfosComponent
+          },
+          {
+            path: 'create',
+            component: AccountCreationComponent
           }
         ]
       },

@@ -1,1 +1,85 @@
-<p>transactions works!</p>
+<div class="bg-gray-50 h-screen w-screen flex-col items-center flex">
+  <h1>Make a Transaction</h1>
+  <div class="bg-gray-50 h-screen w-screen flex items-start py-4">
+    <div class="w-screen h-screen">
+      <form (ngSubmit)="makeOperation()" [formGroup]="formOperation" class="max-w-sm mx-auto">
+        <div class="mb-5">
+          <label class="block mb-2 text-sm font-medium text-gray-900" for="account">Account</label>
+          <select
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            formControlName="account" id="account">
+            @for (account of accounts; track account.id) {
+              @if (account.clientId.toString() === userId) {
+                <option value="{{account.number}}">{{ account.number }}</option>
+              }
+            }
+          </select>
+        </div>
+        <div class="mb-5">
+          <label class="block mb-2 text-sm font-medium text-gray-900 " for="type">Operation type</label>
+          <select
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            formControlName="type" id="type">
+            <option value="0">DEPOSIT</option>
+            <option value="1">WITHDRAWAL</option>
+            <option value="2">TRANSFER</option>
+          </select>
+        </div>
+        <div class="mb-5">
+          <label class="block mb-2 text-sm font-medium text-gray-900" for="amount">Amount</label>
+          <input
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            formControlName="amount"
+            id="amount" required
+            type="text">
+        </div>
+        @if (formOperation.getRawValue().type === "2") {
+          <div class="mb-5">
+            <label class="block mb-2 text-sm font-medium text-gray-900" for="account">Destination Account</label>
+            <input
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              formControlName="destination"
+              id="destination" required
+              type="text">
+          </div>
+        }
+        <button
+          class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+          type="submit">
+          Submit
+        </button>
+      </form>
+      @if (transactionResponse.message !== "") {
+        @if (transactionResponse.success) {
+          <div
+            class="flex items-center p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800"
+            role="alert">
+            <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                 fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+            </svg>
+            <span class="sr-only">Info</span>
+            <div>
+              <span class="font-medium">Success</span> {{ transactionResponse.message }}
+            </div>
+          </div>
+        } @else {
+          <div
+            class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
+            role="alert">
+            <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                 fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+            </svg>
+            <span class="sr-only">Info</span>
+            <div>
+              <span class="font-medium">Echec</span>{{ transactionResponse.message }}
+            </div>
+          </div>
+        }
+      }
+    </div>
+  </div>
+</div>

@@ -25,7 +25,7 @@ export class LoginComponent {
     email: ['', Validators.required],
     password: ['', Validators.required]
   })
-  private apiUrl = 'https://ega-api.onrender.com/ega/api/v1/auth/authenticate';
+  private apiUrl = 'http://localhost:8080/ega/api/v1/auth/authenticate';
 
   onSubmit(): void {
     this.http.post<ClientInterface>(this.apiUrl, this.form.getRawValue(),).subscribe(
