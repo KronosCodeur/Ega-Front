@@ -1,5 +1,6 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {Account} from "./account";
 
 @Component({
   selector: 'app-account',
@@ -11,17 +12,25 @@ import {HttpClient} from "@angular/common/http";
 export class AccountComponent implements OnInit {
 
   http = inject(HttpClient);
-  data: any;
+  accounts!: Account[];
+  userAccounts!: Account[];
+  userId!: string;
+
 
   ngOnInit(): void {
     this.fetchData();
   }
 
   fetchData() {
-    this.http.get('http://localhost:8080/ega/api/v1/accounts').subscribe(
+    this.http.get<Account[]>('http://localhost:8080/ega/api/v1/accounts').subscribe(
       (response) => {
-        console.log(response);
-        this.data = response;
+        this.accounts = response;
+        console.log(this.accounts);
+        var id = localStorage.getItem('userId');
+        if (id !== null) {
+          this.userId = id;
+        }
+        console.log(this.userId);
       }
     )
   }
